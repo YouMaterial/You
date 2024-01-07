@@ -1,0 +1,86 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: Qt-GraphQL
+site_description: Graphql client framework for Qt
+site_url: https://YouMaterial.github.io/You
+site_author: QYou
+repo_name: nrbnlulu/qtgqql
+repo_url: https://github.com/YouMaterial/You
+
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Open Sans
+    code: Fira Code
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  features:
+    - content.code.copy
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+plugins:
+  - search
+  - mike
+
+
+
+nav:
+  - Docs:
+      - Overview: ./index.md
+      - Components: ./components/*.md
+
+  - Developers:
+      - Contributing: ./dev/contributing.md
+      - Architecture: ./dev/architecture.md
+
+markdown_extensions:
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+  - tables
+  - toc:
+      permalink: "#"
+  - markdown_include.include:
+      base_path: ./docs
+
+
+copyright: Copyright &copy; QYou 2023 <a href="https://github/nrbnlulu.com>Nir</a>
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/YouMaterial/You
+
+extra_css:
+  - css/termynal.css
+  - css/custom.css
+extra_javascript:
+  - js/termynal.js
+  - js/custom.js
+watch:
+  - .
