@@ -23,8 +23,8 @@ CONAN_PROFILES = (
 @define
 class Matrix:
     profile: list[ConanProfile]
-    qt_version: list[str] = Factory(lambda: ["6.5.0"])
-    python_version: list[str] = Factory(lambda: ["3.9", "3.10", "3.11"])
+    qt_version: list[str] = Factory(lambda: ["6.5.0", "6.6.0"])
+    python_version: list[str] = Factory(lambda: ["3.11"])
 
 
 TESTCASES_PER_RUNNER = 9
