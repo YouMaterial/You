@@ -129,8 +129,7 @@ class YouRecipe(ConanFile):
     default_options = {  # noqa
         "verbose": False,
         "qt_version": "6.5.0",
-        "test_gen": False,
-        "test_core": False,
+        "test": False,
     }
 
     exports_sources = "CMakeLists.txt", "include/*", "pyproject.toml"
@@ -172,12 +171,8 @@ class YouRecipe(ConanFile):
         return False
 
     @property
-    def should_test_generated(self) -> bool:
-        return self._parse_conan_bool(self.options.test_gen.value)
-
-    @property
-    def should_test_core(self) -> bool:
-        return self._parse_conan_bool(self.options.test_core.value)
+    def should_test(self) -> bool:
+        return self._parse_conan_bool(self.options.test.value)
 
     def generate(self) -> None:
         deps = CMakeDeps(self)
@@ -205,9 +200,7 @@ class YouRecipe(ConanFile):
             qt_installer.dll_path,
         )  # used by catch2 to discover tests/
         tc.cache_variables["Qt6_DIR"] = str(qt_installer.qt6_cmake_config)
-        tc.cache_variables["YOU_TEST_GEN"] = self.should_test_generated
-        tc.cache_variables["YOU_TEST_CORE"] = self.should_test_core
-        tc.cache_variables["TESTS_QML_DIR"] = (self.build_path / "tests").as_posix()
+        tc.cache_variables["YOU_TEST"] = self.should_test
         if self.is_windows:
             tc.cache_variables["CMAKE_CXX_COMPILER"] = "c++.exe"
 

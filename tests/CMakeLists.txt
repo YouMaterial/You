@@ -5,30 +5,28 @@ set(CMAKE_OBJECT_PATH_MAX 9999)
 
 add_library(utils_for_tests
         testutils.cpp testutils.hpp
-        test_networklayers/utils.hpp
-        test_networklayers/utils.cpp
 )
 target_link_libraries(utils_for_tests
         PUBLIC
         Qt6::Quick
         Qt6::Test
         Qt6::Qml
-        qtgql
         Catch2::Catch2
 )
 
-add_executable(test_core
+add_executable(tests
         main.cpp
+        test_foo.cpp
 
 )
-target_link_libraries(test_core
+target_link_libraries(tests
         PUBLIC
         Qt6::Test
         Qt6::Qml
-        qtgql
+        You::You
         Catch2::Catch2
         utils_for_tests
 )
-catch_discover_tests(test_core
+catch_discover_tests(tests
         DL_PATHS ${QT_DL_LIBRARIES}
 )

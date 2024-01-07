@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'poetry'
-      - run: poetry install
+      - run: poetry install --no-root
 
       - id: set_matrix
         run: |
@@ -82,13 +82,6 @@ jobs:
         with:
           arch: x64
           toolset: 14.3
-
-      - name: Generate test files and coverage python
-        shell: bash
-        env:
-            MATRIX_TESTCASES: ${{ toJson(matrix.testcases) }}
-        run: |
-          poetry run coverage run tests/test_codegen/generate.py
 
       - name: Conan profile detect
         run: |
