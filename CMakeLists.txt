@@ -31,8 +31,8 @@ qt_add_qml_module(You
         OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/You
         QML_FILES
         src/You/Components/TBD.qml
-
 )
+
 add_library(You::You ALIAS You)
 # ───── LIBRARY TESTS ─────
 if(YOU_TEST)

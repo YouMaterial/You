@@ -29,7 +29,9 @@ poetry run conan build . -o test=True
 ### Testing
 Run tests with
 
-TODO: add test command
+```bash
+cd build/Debug && ctest
+```
 
 
 ### Documenting

@@ -5,27 +5,27 @@ import re
 import subprocess
 from pathlib import Path
 
-from tests.conftest import PATHS
-
 pattern = re.compile(r"\b(TODO|FIXME)\b")
 ALLOWED_TODO = re.compile("TODO\\((.+?)\\):\\s+(.*)")
+
+PROJECT_ROOT = Path(__file__).parent.parent.parent.parent.resolve(True)
 
 
 def check_todos() -> list:
     tracked_files: list[Path] = []
     types = ("py", "cpp", "hpp", "jinja", "md", "yml")
-    excludes = (Path(__file__), PATHS.PROJECT_ROOT / ".github/workflows/linters.yml")
+    excludes = (Path(__file__), PROJECT_ROOT / ".github/workflows/linters.yml")
     types = tuple(f".{t}" for t in types)
     for path_name in (
         subprocess.run(
             "git ls-tree -r HEAD --name-only".split(" "),
             capture_output=True,
-            cwd=PATHS.PROJECT_ROOT,
+            cwd=PROJECT_ROOT,
         )
         .stdout.decode("utf-8")
         .splitlines()
     ):
-        file = (PATHS.PROJECT_ROOT / path_name.strip("")).resolve(True)
+        file = (PROJECT_ROOT / path_name.strip("")).resolve(True)
         if file.suffix in types and file not in excludes:
             tracked_files.append(file)
 
