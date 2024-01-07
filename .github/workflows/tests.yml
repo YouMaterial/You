@@ -113,8 +113,7 @@ jobs:
         shell: bash
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            cd build\Debug;
-            poetry run ctest -C Debug -V;
+            cd .\build\Debug; poetry run ctest
           elif [ "$RUNNER_OS" == "Linux" ]; then
             poetry run xvfb-run -a cd build/Debug && ctest -C Debug -V;
           fi
