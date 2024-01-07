@@ -62,7 +62,7 @@ jobs:
         with:
           python-version: ${{matrix.python_version}}
           cache: 'poetry'
-      - run: poetry install
+      - run: poetry install --no-root
 
       - name: Install Qt dependencies
         shell: bash
@@ -116,5 +116,5 @@ jobs:
             cd build\Debug;
             poetry run ctest -C Debug -V;
           elif [ "$RUNNER_OS" == "Linux" ]; then
-            poetry run xvfb-run cd build/Debug && -a ctest -C Debug -V;
+            poetry run xvfb-run -a cd build/Debug && ctest -C Debug -V;
           fi
